@@ -1,1 +1,1 @@
-# StaticeWebServer
+# StaticWebServer
