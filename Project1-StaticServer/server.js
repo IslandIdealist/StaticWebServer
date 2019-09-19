@@ -19,23 +19,22 @@ function NewRequest(req, res) {
           body += chunk.toString(); // convert binary buffer to string
         });
         req.on('end', () => {
-          console.log(body);
-          console.log("Test")
-        });
-      }
+        console.log(body);
+        var fullpath = path.join(public_dir, "join.html");
+        fs.readFile(fullpath, (err, data) => {
+           if (err) {
+                res.writeHead(404, {'Content-Type': 'text/plain'});
+                res.write('Oh no! Could not find file');
+                res.end();
+           }
+           else {
+               res.writeHead(200, {'Content-Type': 'text/html'});
+               res.write(data);
+               res.end();
+           }
+      });
+    }
 
-    var fullpath = path.join(public_dir, filename);
-    fs.readFile(fullpath, (err, data) => {
-       if (err) {
-            res.writeHead(404, {'Content-Type': 'text/plain'});
-            res.write('Oh no! Could not find file');
-            res.end();
-       }
-       else {
-           res.writeHead(200, {'Content-Type': 'text/html'});
-           res.write(data);
-           res.end();
-       }
     });
 }
 
