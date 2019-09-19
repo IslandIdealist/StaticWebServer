@@ -32,10 +32,12 @@ function NewRequest(req, res) {
                res.write(data);
                res.end();
            }
+
+           });
       });
     }
 
-    });
+
 }
 
 var server = http.createServer(NewRequest);
