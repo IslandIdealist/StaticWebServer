@@ -20,7 +20,7 @@ function NewRequest(req, res) {
         });
         req.on('end', () => {
           console.log(body);
-          // send response here
+          console.log("Test")
         });
       }
 
