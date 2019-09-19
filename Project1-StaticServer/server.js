@@ -13,6 +13,17 @@ function NewRequest(req, res) {
         filename = 'index.html';
     }
 
+    if (req.method === 'POST') {
+        let body = '';
+        req.on('data', (chunk) => {
+          body += chunk.toString(); // convert binary buffer to string
+        });
+        req.on('end', () => {
+          console.log(body);
+          // send response here
+        });
+      }
+
     var fullpath = path.join(public_dir, filename);
     fs.readFile(fullpath, (err, data) => {
        if (err) {
