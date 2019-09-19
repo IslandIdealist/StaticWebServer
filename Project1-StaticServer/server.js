@@ -7,10 +7,12 @@ var port = 8000;
 var public_dir = path.join(__dirname, 'public');
 
 function NewRequest(req, res) {
+
     var filename = req.url.substring(1);
     if (filename === '') {
         filename = 'index.html';
     }
+
     var fullpath = path.join(public_dir, filename);
     fs.readFile(fullpath, (err, data) => {
        if (err) {
